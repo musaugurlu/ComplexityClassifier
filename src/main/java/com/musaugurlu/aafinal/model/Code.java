@@ -111,13 +111,19 @@ public class Code {
             return "Invalid Code";
         }
 
-        if (getLoops() == 0 && getRecursions() == 0) {
+        if (getRecursions() == 0 && getLoops() == 0) {
             return ComplexityType.Constant.name();
-        } else if (getLoopDepth() == 1 && getRecursions() == 0) {
+        } else if (getRecursions() == 0 && getLoopDepth() == 1) {
             return ComplexityType.Linear.name();
+        } else if (getRecursions() == 0 && getLoopDepth() == 2) {
+            return ComplexityType.Quadratic.name();
+        } else if (getRecursions() == 0 && getLoopDepth() > 2) {
+            return ComplexityType.Polynomial.name();
+        } else if (getRecursions() > 0) {
+            return ComplexityType.Exponential.name();
         }
 
-        return "Other";
+        return "Unknown";
     }
 
     public boolean isValid() {
